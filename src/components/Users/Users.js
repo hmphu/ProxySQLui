@@ -4,7 +4,11 @@ import { Form, Button, Table, Pagination, Popconfirm } from 'antd';
 import { routerRedux } from 'dva/router';
 import styles from './Users.css';
 import { PAGE_SIZE } from '../../constants';
-import UserModal from './UserModal';
+import UserActiveModal from './UserActiveModal';
+import UserPasswdModal from './UserPasswdModal';
+import UserDHGModal from './UserDHGModal';
+import UserDSModal from './UserDSModal';
+import UserMCModal from './UserMCModal';
 
 // const Option = Select.option;
 const FormItem = Form.Item;
@@ -72,21 +76,30 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+          <UserPasswdModal
+            record={record}
+            onOk={editHandler.bind(null, record.id)}
+          >
             <a>EditPasswd</a>
-          </UserModal>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+          </UserPasswdModal>
+          <UserActiveModal
+            record={record}
+            onOk={editHandler.bind(null, record.id)}
+          >
             <a>EditStatus</a>
-          </UserModal>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+          </UserActiveModal>
+          <UserDHGModal
+            record={record}
+            onOk={editHandler.bind(null, record.id)}
+          >
             <a>EditDHG</a>
-          </UserModal>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+          </UserDHGModal>
+          <UserDSModal record={record} onOk={editHandler.bind(null, record.id)}>
             <a>EditDS</a>
-          </UserModal>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+          </UserDSModal>
+          <UserMCModal record={record} onOk={editHandler.bind(null, record.id)}>
             <a>EditMC</a>
-          </UserModal>
+          </UserMCModal>
 
           <Popconfirm
             title="Confirm to delete?"

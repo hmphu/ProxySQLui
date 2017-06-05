@@ -4,7 +4,7 @@ import styles from './UserModal.css';
 
 const FormItem = Form.Item;
 
-class UserEditModal extends Component {
+class UserDHGModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +38,7 @@ class UserEditModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { name, password, active } = this.props.record;
+    const { default_hostgroup } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -56,19 +56,9 @@ class UserEditModal extends Component {
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
-            <FormItem {...formItemLayout} label="Name">
-              {getFieldDecorator('name', {
-                initialValue: name,
-              })(<Input />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="Password">
-              {getFieldDecorator('password', {
-                initialValue: password,
-              })(<Input />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="Active">
-              {getFieldDecorator('active', {
-                initialValue: active,
+            <FormItem {...formItemLayout} label="DefaultHostgroup">
+              {getFieldDecorator('default_hostgroup', {
+                initialValue: default_hostgroup,
               })(<Input />)}
             </FormItem>
           </Form>
@@ -78,4 +68,4 @@ class UserEditModal extends Component {
   }
 }
 
-export default Form.create()(UserEditModal);
+export default Form.create()(UserDHGModal);
