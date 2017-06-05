@@ -34,8 +34,10 @@ class MainLayout extends React.Component {
               <span className={styles.navtext}>Dashboard</span>
             </Menu.Item>
             <Menu.Item key="/users">
-              <Icon type="user" />
-              <span className={styles.navtext}>Users</span>
+              <Link to="/users">
+                <Icon type="user" />
+                <span className={styles.navtext}>Users</span>
+              </Link>
             </Menu.Item>
             <Menu.Item key="/servers">
               <Icon type="database" />
@@ -67,15 +69,7 @@ class MainLayout extends React.Component {
               minHeight: 280,
             }}
           >
-            <Form layout="inline" onSubmit={this.handleSubmit}>
-              <FormItem label="Username">
-                <input type="text" />
-              </FormItem>
-              <FormItem>
-                <Button type="primary" htmlType="submit">Add User</Button>
-              </FormItem>
 
-            </Form>
             {children}
 
           </Layout.Content>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Table, Pagination, Popconfirm } from 'antd';
+import { Form, Button, Table, Pagination, Popconfirm } from 'antd';
 import { routerRedux } from 'dva/router';
 import styles from './Users.css';
 import { PAGE_SIZE } from '../../constants';
@@ -68,25 +68,36 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   ];
 
   return (
-    <div className={styles.normal}>
+    <Form layout="inline" onSubmit={this.handleSubmit}>
+      <FormItem label="Username">
+        <input type="text" />
+      </FormItem>
+      <FormItem>
+        <Button icon="user-add" type="primary" htmlType="submit">
+          Add User
+        </Button>
+      </FormItem>
+      <div className={styles.normal}>
 
-      <div>
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          loading={loading}
-          rowKey={record => record.id}
-          pagination={false}
-        />
-        <Pagination
-          className="ant-table-pagination"
-          total={total}
-          current={current}
-          pageSize={PAGE_SIZE}
-          onChange={pageChangeHandler}
-        />
+        <div>
+          <Table
+            columns={columns}
+            dataSource={dataSource}
+            loading={loading}
+            rowKey={record => record.id}
+            pagination={false}
+          />
+          <Pagination
+            className="ant-table-pagination"
+            total={total}
+            current={current}
+            pageSize={PAGE_SIZE}
+            onChange={pageChangeHandler}
+          />
+        </div>
       </div>
-    </div>
+
+    </Form>
   );
 }
 
