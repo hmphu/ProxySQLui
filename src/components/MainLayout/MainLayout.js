@@ -18,7 +18,7 @@ class MainLayout extends React.Component {
     const { size } = this.props;
     const state = this.state;
     return (
-      <Layout>
+      <Layout height="100%">
         <Layout.Sider
           trigger={null}
           collapsible

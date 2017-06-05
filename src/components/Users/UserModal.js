@@ -5,7 +5,6 @@ import styles from './UserModal.css';
 const FormItem = Form.Item;
 
 class UserEditModal extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -39,7 +38,7 @@ class UserEditModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { name, email, website } = this.props.record;
+    const { name, password, active } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -48,7 +47,7 @@ class UserEditModal extends Component {
     return (
       <span>
         <span onClick={this.showModelHandler}>
-          { children }
+          {children}
         </span>
         <Modal
           title="Edit User"
@@ -57,35 +56,20 @@ class UserEditModal extends Component {
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
-            <FormItem
-              {...formItemLayout}
-              label="Name"
-            >
-              {
-                getFieldDecorator('name', {
-                  initialValue: name,
-                })(<Input />)
-              }
+            <FormItem {...formItemLayout} label="Name">
+              {getFieldDecorator('name', {
+                initialValue: name,
+              })(<Input />)}
             </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label="Email"
-            >
-              {
-                getFieldDecorator('email', {
-                  initialValue: email,
-                })(<Input />)
-              }
+            <FormItem {...formItemLayout} label="Password">
+              {getFieldDecorator('password', {
+                initialValue: password,
+              })(<Input />)}
             </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label="Website"
-            >
-              {
-                getFieldDecorator('website', {
-                  initialValue: website,
-                })(<Input />)
-              }
+            <FormItem {...formItemLayout} label="Active">
+              {getFieldDecorator('active', {
+                initialValue: active,
+              })(<Input />)}
             </FormItem>
           </Form>
         </Modal>

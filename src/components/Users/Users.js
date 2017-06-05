@@ -37,20 +37,36 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'username',
+      key: 'username',
       render: text => <a href="">{text}</a>,
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
+      title: 'Password',
+      dataIndex: 'password',
+      key: 'password',
     },
     {
-      title: 'Website',
-      dataIndex: 'website',
-      key: 'website',
+      title: 'Active',
+      dataIndex: 'active',
+      key: 'active',
     },
+    {
+      title: 'DefaultHostgroup',
+      dataIndex: 'default_hostgroup',
+      key: 'default_hostgroup',
+    },
+    {
+      title: 'DefaultSchema',
+      dataIndex: 'default_schema',
+      key: 'default_schema',
+    },
+    {
+      title: 'MaxConnections',
+      dataIndex: 'max_connections',
+      key: 'max_connections',
+    },
+
     {
       title: 'Operation',
       key: 'operation',
