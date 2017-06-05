@@ -4,9 +4,6 @@ import styles from './MainLayout.css';
 import { Form, Button, Input, Select, Layout, Menu, Icon } from 'antd';
 import { Link } from 'dva/router';
 
-const Option = Select.option;
-const FormItem = Form.Item;
-
 class MainLayout extends React.Component {
   state = {
     collapsed: false,
@@ -30,8 +27,10 @@ class MainLayout extends React.Component {
           <div className={styles.logo} />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="/dashboard">
-              <Icon type="info-circle-o" />
-              <span className={styles.navtext}>Dashboard</span>
+              <Link to="/dashboard">
+                <Icon type="info-circle-o" />
+                <span className={styles.navtext}>Dashboard</span>
+              </Link>
             </Menu.Item>
             <Menu.Item key="/users">
               <Link to="/users">
@@ -40,16 +39,22 @@ class MainLayout extends React.Component {
               </Link>
             </Menu.Item>
             <Menu.Item key="/servers">
-              <Icon type="database" />
-              <span className={styles.navtext}>Servers</span>
+              <Link to="/servers">
+                <Icon type="database" />
+                <span className={styles.navtext}>Servers</span>
+              </Link>
             </Menu.Item>
             <Menu.Item key="/queryrules">
-              <Icon type="api" />
-              <span className={styles.navtext}>QueryRules</span>
+              <Link to="/queryrules">
+                <Icon type="api" />
+                <span className={styles.navtext}>QueryRules</span>
+              </Link>
             </Menu.Item>
             <Menu.Item key="/schedulers">
-              <Icon type="sync" />
-              <span className={styles.navtext}>Scheduler</span>
+              <Link to="/schedulers">
+                <Icon type="sync" />
+                <span className={styles.navtext}>Scheduler</span>
+              </Link>
             </Menu.Item>
           </Menu>
         </Layout.Sider>

@@ -6,6 +6,9 @@ import styles from './Users.css';
 import { PAGE_SIZE } from '../../constants';
 import UserModal from './UserModal';
 
+// const Option = Select.option;
+const FormItem = Form.Item;
+
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   function deleteHandler(id) {
     // console.warn(`TODO: ${id}`);
@@ -68,36 +71,36 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   ];
 
   return (
-    <Form layout="inline" onSubmit={this.handleSubmit}>
-      <FormItem label="Username">
-        <input type="text" />
-      </FormItem>
-      <FormItem>
-        <Button icon="user-add" type="primary" htmlType="submit">
-          Add User
-        </Button>
-      </FormItem>
-      <div className={styles.normal}>
+    <div className={styles.normal}>
+      <Form layout="inline">
+        <FormItem label="Username">
+          <input type="text" />
+        </FormItem>
+        <FormItem>
+          <Button icon="user-add" type="primary" htmlType="submit">
+            Add User
+          </Button>
+        </FormItem>
 
-        <div>
-          <Table
-            columns={columns}
-            dataSource={dataSource}
-            loading={loading}
-            rowKey={record => record.id}
-            pagination={false}
-          />
-          <Pagination
-            className="ant-table-pagination"
-            total={total}
-            current={current}
-            pageSize={PAGE_SIZE}
-            onChange={pageChangeHandler}
-          />
-        </div>
+      </Form>
+
+      <div>
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          loading={loading}
+          rowKey={record => record.id}
+          pagination={false}
+        />
+        <Pagination
+          className="ant-table-pagination"
+          total={total}
+          current={current}
+          pageSize={PAGE_SIZE}
+          onChange={pageChangeHandler}
+        />
       </div>
-
-    </Form>
+    </div>
   );
 }
 
