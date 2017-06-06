@@ -30,8 +30,8 @@ export default {
       const page = yield select(state => state.users.page);
       yield put({ type: 'fetch', payload: { page } });
     },
-    *patch({ payload: { id, values } }, { call, put, select }) {
-      yield call(usersService.patch, id, values);
+    *put({ payload: { values } }, { call, put, select }) {
+      yield call(usersService.put, values);
       const page = yield select(state => state.users.page);
       yield put({ type: 'fetch', payload: { page } });
     },

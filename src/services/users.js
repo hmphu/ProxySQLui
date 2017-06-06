@@ -11,9 +11,20 @@ export function remove(id) {
   });
 }
 
+/*
 export function patch(id, values) {
   return request(`/api/users/${id}`, {
     method: 'PATCH',
+    body: JSON.stringify(values),
+  });
+}
+*/
+
+export function put(values) {
+  console.log('--->', values);
+  return request('/api/users/status', {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'PUT',
     body: JSON.stringify(values),
   });
 }

@@ -5,11 +5,12 @@ import createLoading from 'dva-loading';
 // 1. Initialize
 const app = dva();
 
-app.model(require("./models/users"));
-app.model(require("./models/schedulers"));
-app.model(require("./models/queryrules"));
-app.model(require("./models/dashboard"));
-app.model(require("./models/servers"));
+app.model(require('./models/users'));
+app.model(require('./models/schedulers'));
+app.model(require('./models/queryrules'));
+app.model(require('./models/dashboard'));
+app.model(require('./models/servers'));
+
 app.use(createLoading());
 
 // 2. Plugins

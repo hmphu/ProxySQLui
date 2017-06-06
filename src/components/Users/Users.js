@@ -33,8 +33,8 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   function editHandler(id, values) {
     dispatch({
-      type: 'users/patch',
-      payload: { id, values },
+      type: 'users/put',
+      payload: { values },
     });
   }
 

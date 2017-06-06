@@ -29,7 +29,11 @@ class UserActiveModal extends Component {
     const { onOk } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        onOk(values);
+        console.log('onHandler-->', values);
+        const result = values;
+        result.active = parseInt(result.active, 10);
+        console.log('onHandler2-->', result);
+        onOk(result);
         this.hideModelHandler();
       }
     });
@@ -38,7 +42,7 @@ class UserActiveModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { active } = this.props.record;
+    const { active, username } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -56,11 +60,18 @@ class UserActiveModal extends Component {
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
+            <FormItem {...formItemLayout} label="User Name">
+              {getFieldDecorator('username', {
+                initialValue: username,
+              })(<Input />)}
+            </FormItem>
+
             <FormItem {...formItemLayout} label="Active">
               {getFieldDecorator('active', {
                 initialValue: active,
               })(<Input />)}
             </FormItem>
+
           </Form>
         </Modal>
       </span>
