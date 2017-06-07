@@ -21,7 +21,7 @@ export function patch(id, values) {
 */
 
 export function put(values) {
-  console.log('--->', values);
+  console.log('services/users.js--->', values);
   return request('/api/users/status', {
     headers: { 'Content-Type': 'application/json' },
     method: 'PUT',

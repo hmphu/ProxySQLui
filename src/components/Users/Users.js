@@ -43,7 +43,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       title: 'Name',
       dataIndex: 'username',
       key: 'username',
-      render: text => <a href="">{text}</a>,
+      // render: text => <a href="">{text}</a>,
     },
     {
       title: 'Password',
@@ -84,7 +84,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
           </UserPasswdModal>
           <UserActiveModal
             record={record}
-            onOk={editHandler.bind(null, record.id)}
+            onOk={editHandler.bind(null, record.username)}
           >
             <a>EditStatus</a>
           </UserActiveModal>
@@ -123,7 +123,6 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
             Add User
           </Button>
         </FormItem>
-
       </Form>
 
       <div>
