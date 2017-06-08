@@ -35,6 +35,32 @@ export default {
       const page = yield select(state => state.users.page);
       yield put({ type: 'fetch', payload: { page } });
     },
+
+    *putStatus({ payload: { values } }, { call, put, select }) {
+      yield call(usersService.putStatus, values);
+      const page = yield select(state => state.users.page);
+      yield put({ type: 'fetch', payload: { page } });
+    },
+    *putDHG({ payload: { values } }, { call, put, select }) {
+      yield call(usersService.putDHG, values);
+      const page = yield select(state => state.users.page);
+      yield put({ type: 'fetch', payload: { page } });
+    },
+    *putPass({ payload: { values } }, { call, put, select }) {
+      yield call(usersService.putPass, values);
+      const page = yield select(state => state.users.page);
+      yield put({ type: 'fetch', payload: { page } });
+    },
+    *putDS({ payload: { values } }, { call, put, select }) {
+      yield call(usersService.putDS, values);
+      const page = yield select(state => state.users.page);
+      yield put({ type: 'fetch', payload: { page } });
+    },
+    *putMC({ payload: { values } }, { call, put, select }) {
+      yield call(usersService.putMC, values);
+      const page = yield select(state => state.users.page);
+      yield put({ type: 'fetch', payload: { page } });
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {

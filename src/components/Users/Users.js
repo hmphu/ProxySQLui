@@ -31,6 +31,41 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     );
   }
 
+  function editUserStatusHandler(id, values) {
+    dispatch({
+      type: 'users/putStatus',
+      payload: { values },
+    });
+  }
+
+  function editUserDHG(id, values) {
+    dispatch({
+      type: 'users/putDHG',
+      payload: { values },
+    });
+  }
+
+  function editUserDS(id, values) {
+    dispatch({
+      type: 'users/putDS',
+      payload: { values },
+    });
+  }
+
+  function editUserPass(id, values) {
+    dispatch({
+      type: 'users/putPass',
+      payload: { values },
+    });
+  }
+
+  function editUserMC(id, values) {
+    dispatch({
+      type: 'users/putMC',
+      payload: { values },
+    });
+  }
+
   function editHandler(id, values) {
     dispatch({
       type: 'users/put',
@@ -78,26 +113,26 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
         <span className={styles.operation}>
           <UserPasswdModal
             record={record}
-            onOk={editHandler.bind(null, record.id)}
+            onOk={editUserPass.bind(null, record.id)}
           >
             <a>EditPasswd</a>
           </UserPasswdModal>
           <UserActiveModal
             record={record}
-            onOk={editHandler.bind(null, record.username)}
+            onOk={editUserStatusHandler.bind(null, record.username)}
           >
             <a>EditStatus</a>
           </UserActiveModal>
           <UserDHGModal
             record={record}
-            onOk={editHandler.bind(null, record.id)}
+            onOk={editUserDHG.bind(null, record.id)}
           >
             <a>EditDHG</a>
           </UserDHGModal>
-          <UserDSModal record={record} onOk={editHandler.bind(null, record.id)}>
+          <UserDSModal record={record} onOk={editUserDS.bind(null, record.id)}>
             <a>EditDS</a>
           </UserDSModal>
-          <UserMCModal record={record} onOk={editHandler.bind(null, record.id)}>
+          <UserMCModal record={record} onOk={editUserMC.bind(null, record.id)}>
             <a>EditMC</a>
           </UserMCModal>
 

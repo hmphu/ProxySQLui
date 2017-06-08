@@ -38,7 +38,7 @@ class UserDSModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { default_schema } = this.props.record;
+    const { default_schema, username } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -56,6 +56,12 @@ class UserDSModal extends Component {
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
+            <FormItem {...formItemLayout} label="User Name">
+              {getFieldDecorator('username', {
+                initialValue: username,
+              })(<Input />)}
+            </FormItem>
+
             <FormItem {...formItemLayout} label="DefaultSchema">
               {getFieldDecorator('default_schema', {
                 initialValue: default_schema,

@@ -29,6 +29,8 @@ class UserDHGModal extends Component {
     const { onOk } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        const result = values;
+        result.default_hostgroup = parseInt(values.default_hostgroup, 10);
         onOk(values);
         this.hideModelHandler();
       }
@@ -38,7 +40,7 @@ class UserDHGModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { default_hostgroup } = this.props.record;
+    const { default_hostgroup, username } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -56,6 +58,12 @@ class UserDHGModal extends Component {
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
+            <FormItem {...formItemLayout} label="User Name">
+              {getFieldDecorator('username', {
+                initialValue: username,
+              })(<Input />)}
+            </FormItem>
+
             <FormItem {...formItemLayout} label="DefaultHostgroup">
               {getFieldDecorator('default_hostgroup', {
                 initialValue: default_hostgroup,

@@ -38,7 +38,7 @@ class UserPasswdModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { password } = this.props.record;
+    const { password, username } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -56,6 +56,12 @@ class UserPasswdModal extends Component {
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
+            <FormItem {...formItemLayout} label="User Name">
+              {getFieldDecorator('username', {
+                initialValue: username,
+              })(<Input />)}
+            </FormItem>
+
             <FormItem {...formItemLayout} label="Password">
               {getFieldDecorator('password', {
                 initialValue: password,
