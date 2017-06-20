@@ -25,6 +25,9 @@ export default {
         },
       });
     },
+    *CreateUser({ payload: values }, { call, put, select }) {
+      yield call(usersService.CreateUser, values);
+    },
     *remove({ payload: id }, { call, put, select }) {
       yield call(usersService.remove, id);
       const page = yield select(state => state.users.page);

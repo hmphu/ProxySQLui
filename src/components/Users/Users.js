@@ -9,6 +9,7 @@ import UserPasswdModal from './UserPasswdModal';
 import UserDHGModal from './UserDHGModal';
 import UserDSModal from './UserDSModal';
 import UserMCModal from './UserMCModal';
+import CreateOneUser from './CreateOneUser';
 
 // const Option = Select.option;
 const FormItem = Form.Item;
@@ -72,6 +73,13 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       payload: { values },
     });
   }
+
+  const createOneUserHandler = (values) => {
+    dispatch({
+      type: 'users/CreateUser',
+      payload: values,
+    });
+  };
 
   const columns = [
     {
@@ -149,17 +157,9 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   return (
     <div className={styles.normal}>
-      <Form layout="inline">
-        <FormItem label="Username">
-          <input type="text" />
-        </FormItem>
-        <FormItem>
-          <Button icon="user-add" type="primary" htmlType="submit">
-            Add User
-          </Button>
-        </FormItem>
-      </Form>
-
+      <div>
+        <CreateOneUser onOK={createOneUserHandler} />
+      </div>
       <div>
         <Table
           columns={columns}

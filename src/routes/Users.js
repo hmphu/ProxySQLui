@@ -14,6 +14,4 @@ function Users({ location }) {
   );
 }
 
-
 export default connect()(Users);
-

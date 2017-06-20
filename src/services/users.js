@@ -11,6 +11,14 @@ export function remove(id) {
   });
 }
 
+export function CreateUser(values) {
+  return request('/api/users', {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'POST',
+    body: JSON.stringify(values),
+  });
+}
+
 /*
 export function patch(id, values) {
   return request(`/api/users/${id}`, {
