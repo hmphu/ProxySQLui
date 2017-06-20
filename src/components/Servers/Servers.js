@@ -114,7 +114,7 @@ function Servers({
 function mapStateToProps(state) {
   const { list, total, page } = state.servers;
   return {
-    loading: state.loading.models.users,
+    loading: state.loading.models.servers,
     list,
     total,
     page,
