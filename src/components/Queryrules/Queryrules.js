@@ -34,6 +34,14 @@ function Queryrules({
     });
   };
 
+  // 删除一个查询规则
+  function deleteOneQr(record) {
+    dispatch({
+      type: 'queryrules/DeleteOneQueryRules',
+      payload: record.rule_id,
+    });
+  }
+
   const columns = [
     {
       title: 'RuleId',
@@ -79,6 +87,21 @@ function Queryrules({
       title: 'DestinationHostGroup',
       dataIndex: 'destination_hostgroup',
       key: 'destination_hostgroup',
+    },
+    {
+      title: 'Operation',
+      key: 'operation',
+      render: (text, record) => (
+        <span className={styles.operation}>
+          <Popconfirm
+            record={record}
+            title="Delete Qr"
+            onConfirm={deleteOneQr.bind(null, record)}
+          >
+            <a href=""> Delete</a>
+          </Popconfirm>
+        </span>
+      ),
     },
   ];
 

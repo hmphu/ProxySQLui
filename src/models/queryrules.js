@@ -36,7 +36,8 @@ export default {
       const page = yield select(state => state.queryrules.page);
       yield put({ type: 'ListAllQueryRules', payload: { page } });
     },
-    *DeleteOneQueryRules({ payload: { id } }, { call, put, select }) {
+    *DeleteOneQueryRules({ payload: id }, { call, put, select }) {
+      console.log('models->queryrules.js->DeleteOneQueryRules->id', id);
       yield call(QueryRulesServices.DeleteOneQueryRules, id);
       const page = yield select(state => state.queryrules.page);
       yield put({ type: 'ListAllQueryRules', payload: { page } });

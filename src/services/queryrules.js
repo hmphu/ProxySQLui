@@ -88,9 +88,8 @@ export function UpdateOneQueryRulesErrmsg(values) {
 }
 
 export function DeleteOneQueryRules(id) {
-  return request('/api/queryrules/${id}', {
-    headers: { 'Content-Type': 'application/json' },
+  console.log('service->CreateQueryRules.js->DeleteOneQueryRules->id ', id);
+  return request(`/api/queryrules/${id}`, {
     method: 'DELETE',
-    body: JSON.stringify(values),
   });
 }
