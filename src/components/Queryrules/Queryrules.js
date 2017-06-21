@@ -6,6 +6,8 @@ import { Form, Button, Table, Pagination, Popconfirm } from 'antd';
 
 import styles from './Queryrules.css';
 
+import CreateOneQr from './CreateOneQr';
+
 function Queryrules({
   dispatch,
   list: dataSource,
@@ -22,6 +24,15 @@ function Queryrules({
       }),
     );
   }
+
+  // 新建查询规则
+  const createOneQrHandler = (values) => {
+    console.log('Queryrules.js->createOneQrHandler->values ', values);
+    dispatch({
+      type: 'queryrules/CreateQueryRules',
+      payload: values,
+    });
+  };
 
   const columns = [
     {
@@ -74,6 +85,9 @@ function Queryrules({
   // DOM
   return (
     <div className={styles.normal}>
+      <div>
+        <CreateOneQr onOk={createOneQrHandler} />
+      </div>
       <Table
         columns={columns}
         dataSource={dataSource}

@@ -30,6 +30,12 @@ export default {
         },
       });
     },
+    *CreateQueryRules({ payload: values }, { call, put, select }) {
+      console.log('models->queryrules.js->CreateQueryRules->values', values);
+      yield call(QueryRulesServices.CreateQueryRules, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
     *DeleteOneQueryRules({ payload: { id } }, { call, put, select }) {
       yield call(QueryRulesServices.DeleteOneQueryRules, id);
       const page = yield select(state => state.queryrules.page);
