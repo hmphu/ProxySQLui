@@ -27,8 +27,22 @@ export default {
         },
       });
     },
-    *DeleteOneServer({ payload: { values } }, { call, put, select }) {
-      yield call(ServersServices.DeleteOneServers, values);
+    *CreateOneServer({ payload: values }, { call, put, select }) {
+      console.log('CreateOneServer:', values);
+      yield call(ServersServices.CreateOneServer, values);
+      const page = yield select(state => state.servers.page);
+      yield put({ type: 'ListAllServers', payload: { page } });
+    },
+    *DeleteOneServer(
+      { payload: { hostgroup_id, hostname, port } },
+      { call, put, select },
+    ) {
+      console.log('DeleteOneServer:', hostgroup_id, hostname, port);
+      yield call(ServersServices.DeleteOneServers, {
+        hostgroup_id,
+        hostname,
+        port,
+      });
       const page = yield select(state => state.servers.page);
       yield put({ type: 'ListAllServers', payload: { page } });
     },
