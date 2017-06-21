@@ -16,6 +16,7 @@ export function ListOneQueryRule(id) {
 }
 
 export function CreateQueryRules(values) {
+  console.log('services->queryrules.js->CreateQueryrules->values:', values);
   return request('/api/queryrules', {
     headers: { 'Content-Type': 'application/json' },
     method: 'POST',

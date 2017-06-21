@@ -27,11 +27,10 @@ class CreateOneQr extends Component {
     const onOk = this.props.onOk;
     this.props.form.validateFields((err, values) => {
       console.log('CreateOneQr->okHandler->this.props: ', this.props);
-      const rule_id = parseInt(values.rule_id, 10);
       const username = values.username;
-      console.log('values --> ', { rule_id, username });
+      console.log('values --> ', { username });
       if (!err) {
-        onOk({ rule_id, username });
+        onOk({ username });
         this.hideModelHandler();
       }
     });
@@ -58,12 +57,6 @@ class CreateOneQr extends Component {
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
-            <Form.Item {...formItemLayout} label="RuleID">
-              {getFieldDecorator('rule_id', {
-                initialValue: 0,
-              })(<Input type="number" />)}
-            </Form.Item>
-
             <Form.Item {...formItemLayout} label="UserName">
               {getFieldDecorator('username', {
                 initialValue: 'dev',
