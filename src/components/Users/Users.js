@@ -81,6 +81,15 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     });
   };
 
+  function deleteHandler(username) {
+    console.log('deleteOneUser:', username);
+    dispatch({
+      type: 'users/deleteOneUser',
+      payload: username,
+    });
+    console.log('deleteHandler ', username);
+  }
+
   const columns = [
     {
       title: 'Name',
@@ -145,8 +154,9 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
           </UserMCModal>
 
           <Popconfirm
-            title="Confirm to delete?"
-            onConfirm={deleteHandler.bind(null, record.id)}
+            record={record}
+            title="Delete User"
+            onConfirm={deleteHandler.bind(null, record.username)}
           >
             <a href="">Delete</a>
           </Popconfirm>

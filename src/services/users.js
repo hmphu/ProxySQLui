@@ -81,3 +81,11 @@ export function putMC(values) {
     body: JSON.stringify(values),
   });
 }
+
+export function deleteOneUser(username) {
+  console.log('services->users.js->deleteOneUser', username);
+  return request(`/api/users/${username}`, {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'DELETE',
+  });
+}

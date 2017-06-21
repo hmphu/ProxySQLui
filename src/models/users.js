@@ -27,6 +27,8 @@ export default {
     },
     *CreateUser({ payload: values }, { call, put, select }) {
       yield call(usersService.CreateUser, values);
+      const page = yield select(state => state.users.page);
+      yield put({ type: 'fetch', payload: { page } });
     },
     *remove({ payload: id }, { call, put, select }) {
       yield call(usersService.remove, id);
@@ -61,6 +63,11 @@ export default {
     },
     *putMC({ payload: { values } }, { call, put, select }) {
       yield call(usersService.putMC, values);
+      const page = yield select(state => state.users.page);
+      yield put({ type: 'fetch', payload: { page } });
+    },
+    *deleteOneUser({ payload: username }, { call, put, select }) {
+      yield call(usersService.deleteOneUser, username);
       const page = yield select(state => state.users.page);
       yield put({ type: 'fetch', payload: { page } });
     },
