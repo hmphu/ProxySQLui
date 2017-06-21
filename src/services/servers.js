@@ -29,8 +29,9 @@ export function CreateOneServer(values) {
 }
 
 export function UpdateOneServerStatus(values) {
+  console.log('service->servers.js->UpdateOneServerStatus', values);
   return request('/api/servers/status', {
-    header: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     method: 'PUT',
     body: JSON.stringify(values),
   });
@@ -38,7 +39,7 @@ export function UpdateOneServerStatus(values) {
 
 export function UpdateOneServerWeight(values) {
   return request('/api/servers/weight', {
-    header: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     method: 'PUT',
     body: JSON.stringify(values),
   });

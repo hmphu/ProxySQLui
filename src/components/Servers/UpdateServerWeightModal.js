@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form, Input } from 'antd';
+import { Select, Modal, Form, Input } from 'antd';
 import styles from './Servers.css';
 
-class CreateOneServer extends Component {
+const FormItem = Form.Item;
+
+class UpdateServerWeightModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,15 +26,16 @@ class CreateOneServer extends Component {
   };
 
   okHandler = () => {
-    const onOk = this.props.onOK;
+    console.log('updateserverweight->props= ', this.props);
+    const onOk = this.props.onOk;
     this.props.form.validateFields((err, values) => {
-      console.log('this.props=', this.props);
-      console.log('values --> ', values);
+      console.log('UpdateServerWeightModal->okHandler->values', values);
       const hostgroup_id = parseInt(values.hostgroup_id, 10);
       const hostname = values.hostname;
       const port = parseInt(values.port, 10);
+      const weight = parseInt(values.weight, 10);
       if (!err) {
-        this.props.onOk({ hostgroup_id, hostname, port });
+        onOk({ hostgroup_id, hostname, port, weight });
         this.hideModelHandler();
       }
     });
@@ -41,7 +44,7 @@ class CreateOneServer extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    // const { password, username } = this.props.record;
+    const { hostgroup_id, hostname, port, weight } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -49,33 +52,38 @@ class CreateOneServer extends Component {
 
     return (
       <span>
-        <Button icon="database" onClick={this.showModelHandler}>
-          {' '}Add Server{' '}
-        </Button>
+        <span onClick={this.showModelHandler}>
+          {children}
+        </span>
         <Modal
-          title="Add Server"
+          title="Modify Server Status"
           visible={this.state.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
-            <Form.Item {...formItemLayout} label="HostGroupId">
+            <FormItem {...formItemLayout} label="HostGroupID">
               {getFieldDecorator('hostgroup_id', {
-                initialValue: 0,
+                initialValue: hostgroup_id,
               })(<Input type="number" />)}
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item {...formItemLayout} label="Hostname">
+            <FormItem {...formItemLayout} label="Hostname">
               {getFieldDecorator('hostname', {
-                initialValue: '192.168.100.10',
+                initialValue: hostname,
               })(<Input />)}
-            </Form.Item>
-
-            <Form.Item {...formItemLayout} label="Hostname">
+            </FormItem>
+            <FormItem {...formItemLayout} label="Port">
               {getFieldDecorator('port', {
-                initialValue: 6033,
+                initialValue: port,
               })(<Input type="number" />)}
-            </Form.Item>
+            </FormItem>
+
+            <FormItem {...formItemLayout} label="Weight">
+              {getFieldDecorator('weight', {
+                initialValue: weight,
+              })(<Input type="number" />)}
+            </FormItem>
           </Form>
         </Modal>
       </span>
@@ -83,12 +91,4 @@ class CreateOneServer extends Component {
   }
 }
 
-/*
-CreateOneServer.propTypes = {
-  hostgroup_id: React.PropTypes.number.isRequired,
-  hostname: React.PropTypes.string.isRequired,
-  port: React.PropTypes.number.isRequired,
-};
-*/
-
-export default Form.create()(CreateOneServer);
+export default Form.create()(UpdateServerWeightModal);

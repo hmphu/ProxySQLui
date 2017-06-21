@@ -33,6 +33,22 @@ export default {
       const page = yield select(state => state.servers.page);
       yield put({ type: 'ListAllServers', payload: { page } });
     },
+    *UpdateOneServerStatus({ payload: values }, { call, put, select }) {
+      console.log('models->servers->UpdateOneServerStatus values ', values);
+      yield call(ServersServices.UpdateOneServerStatus, values);
+      const page = yield select(state => state.servers.page);
+      yield put({ type: 'ListAllServers', payload: { page } });
+    },
+    *UpdateOneServerWeight({ payload: values }, { call, put, select }) {
+      yield call(ServersServices.UpdateOneServerWeight, values);
+      const page = yield select(state => state.servers.page);
+      yield put({ type: 'ListAllServers', payload: { page } });
+    },
+    *UpdateOneServerMC({ payload: values }, { call, put, select }) {
+      yield call(ServersServices.UpdateOneServerMC, values);
+      const page = yield select(state => state.servers.page);
+      yield put({ type: 'ListAllServers', payload: { page } });
+    },
     *DeleteOneServer(
       { payload: { hostgroup_id, hostname, port } },
       { call, put, select },

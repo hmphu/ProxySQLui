@@ -5,6 +5,9 @@ import { PAGE_SIZE } from '../../constants';
 import { Form, Button, Table, Pagination, Popconfirm } from 'antd';
 
 import CreateOneServer from './CreateOneServer';
+import UpdateServerStatusModal from './UpdateServerStatusModal';
+import UpdateServerWeightModal from './UpdateServerWeightModal';
+import UpdateServerMCModal from './UpdateServerMCModal';
 
 import styles from './Servers.css';
 
@@ -29,6 +32,33 @@ function Servers({
   const createOneServerHandler = (values) => {
     dispatch({
       type: 'servers/CreateOneServer',
+      payload: values,
+    });
+  };
+
+  // 更新后端服务的状态
+  const updateOneServerStatusHandler = (record, values) => {
+    console.log('Servers.js->updateOneServerStatusHandler->values= ', values);
+    dispatch({
+      type: 'servers/UpdateOneServerStatus',
+      payload: values,
+    });
+  };
+
+  // 更新后端服务权重
+  const updateOneServerWeightHandler = (record, values) => {
+    console.log('Servers.js->updateOneServerWeightHandler->values= ', values);
+    dispatch({
+      type: 'servers/UpdateOneServerWeight',
+      payload: values,
+    });
+  };
+
+  // 更新后端服务最大连接数
+  const updateOneServerMCHandler = (record, values) => {
+    console.log('Servers.js->updateOneServerMCHandler->values= ', values);
+    dispatch({
+      type: 'servers/UpdateOneServerMC',
       payload: values,
     });
   };
@@ -65,43 +95,36 @@ function Servers({
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      render: text => <a href="">{text}</a>,
     },
     {
       title: 'Weight',
       dataIndex: 'weight',
       key: 'weight',
-      render: text => <a href="">{text}</a>,
     },
     {
       title: 'Compression',
       dataIndex: 'compression',
       key: 'compression',
-      render: text => <a href="">{text}</a>,
     },
     {
       title: 'MaxConnections',
       dataIndex: 'max_connections',
       key: 'max_connections',
-      render: text => <a href="">{text}</a>,
     },
     {
       title: 'MaxReplicationLag',
       dataIndex: 'max_replication_lag',
       key: 'max_replication_lag',
-      render: text => <a href="">{text}</a>,
     },
     {
       title: 'UseSSL',
       dataIndex: 'use_ssl',
       key: 'use_ssl',
-      render: text => <a href="">{text}</a>,
     },
     {
       title: 'MaxLatencyMs',
       dataIndex: 'max_latency_ms',
       key: 'max_latency_ms',
-      render: text => <a href="">{text}</a>,
     },
     {
       title: 'Comment',
@@ -113,6 +136,25 @@ function Servers({
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
+          <UpdateServerStatusModal
+            record={record}
+            onOk={updateOneServerStatusHandler.bind(null, record)}
+          >
+            <a> Status </a>
+          </UpdateServerStatusModal>
+          <UpdateServerWeightModal
+            record={record}
+            onOk={updateOneServerWeightHandler.bind(null, record)}
+          >
+            <a> Weight </a>
+          </UpdateServerWeightModal>
+          <UpdateServerMCModal
+            record={record}
+            onOk={updateOneServerMCHandler.bind(null, record)}
+          >
+            <a> MC </a>
+          </UpdateServerMCModal>
+
           <Popconfirm
             record={record}
             title="Delete Server ?"
