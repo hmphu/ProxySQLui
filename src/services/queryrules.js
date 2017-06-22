@@ -36,7 +36,7 @@ export function UpdateOneQueryRulesUser(values) {
   return request('/api/queryrules/username', {
     headers: { 'Content-Type': 'application/json' },
     method: 'PUT',
-    body: json.stringify(values),
+    body: JSON.stringify(values),
   });
 }
 
@@ -65,6 +65,14 @@ export function UpdateOneQueryRulesMatchDigest(values) {
 }
 
 export function UpdateOneQueryRulesMatchPattern(values) {
+  return request('/api/queryrules/matchpattern', {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'PUT',
+    body: JSON.stringify(values),
+  });
+}
+
+export function UpdateOneQueryRulesReplacePattern(values) {
   return request('/api/queryrules/replacepattern', {
     headers: { 'Content-Type': 'application/json' },
     method: 'PUT',

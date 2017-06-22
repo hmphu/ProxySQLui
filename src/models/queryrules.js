@@ -42,6 +42,60 @@ export default {
       const page = yield select(state => state.queryrules.page);
       yield put({ type: 'ListAllQueryRules', payload: { page } });
     },
+    *UpdateOneQrUser({ payload: values }, { call, put, select }) {
+      console.log('models->queryrules.js->UpdateOneQrUser->values:', values);
+      yield call(QueryRulesServices.UpdateOneQueryRulesUser, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
+    *UpdateOneQrSchema({ payload: values }, { call, put, select }) {
+      console.log('models->queryrules.js->UpdateOneQrSchema->values: ', values);
+      yield call(QueryRulesServices.UpdateOneQueryRulesSchema, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
+    *UpdateOneQrClient({ payload: values }, { call, put, select }) {
+      console.log('models->queryrules.js->UpdateOneQrClient->values: ', values);
+      yield call(QueryRulesServices.UpdateOneQueryRulesClient, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
+    *UpdateOneQrMatchDigest({ payload: values }, { call, put, select }) {
+      console.log(
+        'models->queryrules.js->UpdateOneQrMatchDigest->values',
+        values,
+      );
+      yield call(QueryRulesServices.UpdateOneQueryRulesMatchDigest, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
+    *UpdateOneQrMatchPattern({ payload: values }, { call, put, select }) {
+      console.log(
+        'models->queryrules.js->UpdateOneQrMatchPattern->values: ',
+        values,
+      );
+      yield call(QueryRulesServices.UpdateOneQueryRulesMatchPattern, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
+    *UpdateOneQrReplacePattern({ payload: values }, { call, put, select }) {
+      console.log(
+        'models->queryrules.js->UpdateOneQrReplacePattern->values: ',
+        values,
+      );
+      yield call(QueryRulesServices.UpdateOneQueryRulesReplacePattern, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
+    *UpdateOneQrHostGroup({ payload: values }, { call, put, select }) {
+      console.log(
+        'models->queryrules.js->UpdateOneQrHostGroup->values: ',
+        values,
+      );
+      yield call(QueryRulesServices.UpdateOneQueryRulesDestHostgroup, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {

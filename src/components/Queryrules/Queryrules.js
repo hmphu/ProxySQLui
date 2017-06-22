@@ -7,6 +7,13 @@ import { Form, Button, Table, Pagination, Popconfirm } from 'antd';
 import styles from './Queryrules.css';
 
 import CreateOneQr from './CreateOneQr';
+import UpdateQrUserModal from './UpdateQrUserModal';
+import UpdateQrSchemaModal from './UpdateQrSchemaModal';
+import UpdateQrClientModal from './UpdateQrClientAddrModal';
+import UpdateQrHostGroupModal from './UpdateQrHostGroupModal';
+import UpdateOneQrMatchDigestModal from './UpdateQrMatchDigestModal';
+import UpdateQrMatchPatternModal from './UpdateQrMatchPatternModal';
+import UpdateQrReplacePatternModal from './UpdateQrReplacePatternModal';
 
 function Queryrules({
   dispatch,
@@ -42,6 +49,63 @@ function Queryrules({
     });
   }
 
+  // 更新一个查询规则的用户名称
+  function updateOneQrUserHandler(record, values) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrUser',
+      payload: values,
+    });
+  }
+
+  // 更新一个查询规则的模式名称
+  function updateOneQrSchemaHandler(record, values) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrSchema',
+      payload: values,
+    });
+  }
+
+  // 更新一个查询规则的客户端IP地址
+  function updateOneQrClientHandler(record, values) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrClient',
+      payload: values,
+    });
+  }
+
+  // 更新一个查询规则的语句digest号
+  function updateOneQrMatchDigestHandler(record, values) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrMatchDigest',
+      payload: values,
+    });
+  }
+
+  // 更新一个查询规则的匹配语句
+  function updateOneQrMatchPatternHandler(record, values) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrMatchPattern',
+      payload: values,
+    });
+  }
+
+  // 更新一个查询规则的复写语句
+  function updateOneQrReplacePatternHandler(record, values) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrReplacePattern',
+      payload: values,
+    });
+  }
+
+  // 更新一个查询规则的目标主机组
+  function updateOneQrHostGroupHandler(record, values) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrHostGroup',
+      payload: values,
+    });
+  }
+
+  // 定义要呈现的表格结构
   const columns = [
     {
       title: 'RuleId',
@@ -69,6 +133,11 @@ function Queryrules({
       key: 'client_addr',
     },
     {
+      title: 'Digest',
+      dataIndex: 'digest',
+      key: 'digest',
+    },
+    {
       title: 'MatchDigest',
       dataIndex: 'match_digest',
       key: 'match_digest',
@@ -93,6 +162,48 @@ function Queryrules({
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
+          <UpdateQrUserModal
+            record={record}
+            onOk={updateOneQrUserHandler.bind(null, record)}
+          >
+            <a>EditUser</a>
+          </UpdateQrUserModal>
+          <UpdateQrSchemaModal
+            record={record}
+            onOk={updateOneQrSchemaHandler.bind(null, record)}
+          >
+            <a>EditSchema</a>
+          </UpdateQrSchemaModal>
+          <UpdateQrClientModal
+            record={record}
+            onOk={updateOneQrClientHandler.bind(null, record)}
+          >
+            <a>EditClient</a>
+          </UpdateQrClientModal>
+          <UpdateOneQrMatchDigestModal
+            record={record}
+            onOk={updateOneQrMatchDigestHandler.bind(null, record)}
+          >
+            <a>EditMatchDigest</a>
+          </UpdateOneQrMatchDigestModal>
+          <UpdateQrMatchPatternModal
+            record={record}
+            onOk={updateOneQrMatchPatternHandler.bind(null, record)}
+          >
+            <a>EditMatchPattern</a>
+          </UpdateQrMatchPatternModal>
+          <UpdateQrReplacePatternModal
+            record={record}
+            onOk={updateOneQrReplacePatternHandler.bind(null, record)}
+          >
+            <a>ReplacePattern</a>
+          </UpdateQrReplacePatternModal>
+          <UpdateQrHostGroupModal
+            record={record}
+            onOk={updateOneQrHostGroupHandler.bind(null, record)}
+          >
+            <a>EditHostGroup</a>
+          </UpdateQrHostGroupModal>
           <Popconfirm
             record={record}
             title="Delete Qr"
