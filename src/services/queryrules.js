@@ -56,6 +56,14 @@ export function UpdateOneQueryRulesClient(values) {
   });
 }
 
+export function UpdateOneQueryRulesDigest(values) {
+  return request('/api/queryrules/digest', {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'PUT',
+    body: JSON.stringify(values),
+  });
+}
+
 export function UpdateOneQueryRulesMatchDigest(values) {
   return request('/api/queryrules/matchdigest', {
     headers: { 'Content-Type': 'application/json' },

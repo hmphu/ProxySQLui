@@ -60,6 +60,12 @@ export default {
       const page = yield select(state => state.queryrules.page);
       yield put({ type: 'ListAllQueryRules', payload: { page } });
     },
+    *UpdateOneQrDigest({ payload: values }, { call, put, select }) {
+      console.log('models->queryrules.js->UpdateOneQrDigest->values: ', values);
+      yield call(QueryRulesServices.UpdateOneQueryRulesDigest, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
     *UpdateOneQrMatchDigest({ payload: values }, { call, put, select }) {
       console.log(
         'models->queryrules.js->UpdateOneQrMatchDigest->values',

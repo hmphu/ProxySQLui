@@ -11,7 +11,8 @@ import UpdateQrUserModal from './UpdateQrUserModal';
 import UpdateQrSchemaModal from './UpdateQrSchemaModal';
 import UpdateQrClientModal from './UpdateQrClientAddrModal';
 import UpdateQrHostGroupModal from './UpdateQrHostGroupModal';
-import UpdateOneQrMatchDigestModal from './UpdateQrMatchDigestModal';
+import UpdateQrDigestModal from './UpdateQrDigestModal';
+import UpdateQrMatchDigestModal from './UpdateQrMatchDigestModal';
 import UpdateQrMatchPatternModal from './UpdateQrMatchPatternModal';
 import UpdateQrReplacePatternModal from './UpdateQrReplacePatternModal';
 
@@ -74,6 +75,14 @@ function Queryrules({
   }
 
   // 更新一个查询规则的语句digest号
+  function updateOneQrDigestHandler(record, values) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrDigest',
+      payload: values,
+    });
+  }
+
+  // 更新一个查询规则的语句match_digest号
   function updateOneQrMatchDigestHandler(record, values) {
     dispatch({
       type: 'queryrules/UpdateOneQrMatchDigest',
@@ -180,12 +189,18 @@ function Queryrules({
           >
             <a>EditClient</a>
           </UpdateQrClientModal>
-          <UpdateOneQrMatchDigestModal
+          <UpdateQrDigestModal
+            record={record}
+            onOk={updateOneQrDigestHandler.bind(null, record)}
+          >
+            <a>EditDigest</a>
+          </UpdateQrDigestModal>
+          <UpdateQrMatchDigestModal
             record={record}
             onOk={updateOneQrMatchDigestHandler.bind(null, record)}
           >
             <a>EditMatchDigest</a>
-          </UpdateOneQrMatchDigestModal>
+          </UpdateQrMatchDigestModal>
           <UpdateQrMatchPatternModal
             record={record}
             onOk={updateOneQrMatchPatternHandler.bind(null, record)}
