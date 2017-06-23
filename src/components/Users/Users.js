@@ -158,7 +158,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
             title="Delete User"
             onConfirm={deleteHandler.bind(null, record.username)}
           >
-            <a href="">Delete</a>
+            <Button icon="delete" type="danger"> Delete</Button>
           </Popconfirm>
         </span>
       ),

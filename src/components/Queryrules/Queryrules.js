@@ -224,7 +224,7 @@ function Queryrules({
             title="Delete Qr"
             onConfirm={deleteOneQr.bind(null, record)}
           >
-            <a href=""> Delete</a>
+            <Button icon="delete" type="danger"> Delete</Button>
           </Popconfirm>
         </span>
       ),

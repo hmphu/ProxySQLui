@@ -154,13 +154,12 @@ function Servers({
           >
             <a> MC </a>
           </UpdateServerMCModal>
-
           <Popconfirm
             record={record}
             title="Delete Server ?"
             onConfirm={deleteOneServer.bind(null, record)}
           >
-            <a href="">Delete</a>
+            <Button icon="delete" type="danger"> Delete</Button>
           </Popconfirm>
         </span>
       ),
