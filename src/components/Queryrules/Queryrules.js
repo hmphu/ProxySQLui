@@ -9,6 +9,7 @@ import styles from './Queryrules.css';
 import CreateOneQr from './CreateOneQr';
 import UpdateQrUserModal from './UpdateQrUserModal';
 import UpdateQrSchemaModal from './UpdateQrSchemaModal';
+import UpdateQrStatusModal from './UpdateQrStatusModal';
 import UpdateQrClientModal from './UpdateQrClientAddrModal';
 import UpdateQrHostGroupModal from './UpdateQrHostGroupModal';
 import UpdateQrDigestModal from './UpdateQrDigestModal';
@@ -42,6 +43,14 @@ function Queryrules({
     });
   };
 
+  // 激活或者反激活一个规则
+  function editOneQr(record) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrStatus',
+      payload: values,
+    });
+  }
+
   // 删除一个查询规则
   function deleteOneQr(record) {
     dispatch({
@@ -62,6 +71,14 @@ function Queryrules({
   function updateOneQrSchemaHandler(record, values) {
     dispatch({
       type: 'queryrules/UpdateOneQrSchema',
+      payload: values,
+    });
+  }
+
+  // 更新一个查询规则的模式名称
+  function updateOneQrStatusHandler(record, values) {
+    dispatch({
+      type: 'queryrules/UpdateOneQrStatus',
       payload: values,
     });
   }
@@ -177,6 +194,13 @@ function Queryrules({
           >
             <a>EditUser</a>
           </UpdateQrUserModal>
+          <UpdateQrStatusModal
+            record={record}
+            onOk={updateOneQrStatusHandler.bind(null, record)}
+          >
+            <a>EditStatus</a>
+          </UpdateQrStatusModal>
+
           <UpdateQrSchemaModal
             record={record}
             onOk={updateOneQrSchemaHandler.bind(null, record)}
@@ -219,6 +243,7 @@ function Queryrules({
           >
             <a>EditHostGroup</a>
           </UpdateQrHostGroupModal>
+
           <Popconfirm
             record={record}
             title="Delete Qr"

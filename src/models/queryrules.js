@@ -48,6 +48,12 @@ export default {
       const page = yield select(state => state.queryrules.page);
       yield put({ type: 'ListAllQueryRules', payload: { page } });
     },
+    *UpdateOneQrStatus({ payload: values }, { call, put, select }) {
+      console.log('models->queryrules.js->UpdateOneQrStatus->values: ', values);
+      yield call(QueryRulesServices.UpdateOneQueryRulesStatus, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
     *UpdateOneQrSchema({ payload: values }, { call, put, select }) {
       console.log('models->queryrules.js->UpdateOneQrSchema->values: ', values);
       yield call(QueryRulesServices.UpdateOneQueryRulesSchema, values);
