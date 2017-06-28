@@ -36,7 +36,85 @@ export default {
       yield put({ type: 'fetch', payload: { page } });
     },
     *put({ payload: { values } }, { call, put, select }) {
-      yield call(usersService.put, values);
+      let {
+        username,
+        password,
+        active,
+        use_ssl,
+        default_hostgroup,
+        default_schema,
+        schema_locked,
+        transaction_persistent,
+        fast_forward,
+        backend,
+        frontend,
+        max_connections,
+      } = values;
+
+      // 修改active值
+      if (active) {
+        active = 1;
+      } else {
+        active = 0;
+      }
+
+      // 修改use_ssl值
+      if (use_ssl) {
+        use_ssl = 1;
+      } else {
+        use_ssl = 0;
+      }
+      // 修改schema_locked值
+      if (schema_locked) {
+        schema_locked = 1;
+      } else {
+        schema_locked = 0;
+      }
+      // 修改transaction_persistent值
+      if (transaction_persistent) {
+        transaction_persistent = 1;
+      } else {
+        transaction_persistent = 0;
+      }
+
+      // 修改fast_forward值
+      if (fast_forward) {
+        fast_forward = 1;
+      } else {
+        fast_forward = 0;
+      }
+
+      // 修改backend值
+      if (backend) {
+        backend = 1;
+      } else {
+        backend = 0;
+      }
+
+      // 修改fronted值
+      if (frontend) {
+        frontend = 1;
+      } else {
+        frontend = 0;
+      }
+
+      const newValue = {
+        username,
+        password,
+        active,
+        use_ssl,
+        default_hostgroup,
+        default_schema,
+        schema_locked,
+        transaction_persistent,
+        fast_forward,
+        backend,
+        frontend,
+        max_connections,
+      };
+      console.log('values= ', newValue);
+
+      yield call(usersService.put, newValue);
       const page = yield select(state => state.users.page);
       yield put({ type: 'fetch', payload: { page } });
     },

@@ -1,18 +1,9 @@
-
-.normal {
-}
+.normal {}
 
 .operation a {
-    margin: 0 .5em;
+  margin: 0 .5em;
 }
 
-.form_head_row {
-    margin-bottom: 16px;
-}
-
-
-.form_head_row {
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 0;
+.usertable {
+  width: 100%;
 }

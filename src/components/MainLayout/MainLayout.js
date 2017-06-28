@@ -29,31 +29,31 @@ class MainLayout extends React.Component {
             <Menu.Item key="/dashboard">
               <Link to="/dashboard">
                 <Icon type="info-circle-o" />
-                <span className={styles.navtext}>Dashboard</span>
+                <span className={styles.navtext}>仪表盘</span>
               </Link>
             </Menu.Item>
             <Menu.Item key="/users">
               <Link to="/users">
                 <Icon type="user" />
-                <span className={styles.navtext}>Users</span>
+                <span className={styles.navtext}>用户</span>
               </Link>
             </Menu.Item>
             <Menu.Item key="/servers">
               <Link to="/servers">
                 <Icon type="database" />
-                <span className={styles.navtext}>Servers</span>
+                <span className={styles.navtext}>数据库节点</span>
               </Link>
             </Menu.Item>
             <Menu.Item key="/queryrules">
               <Link to="/queryrules">
                 <Icon type="api" />
-                <span className={styles.navtext}>QueryRules</span>
+                <span className={styles.navtext}>查询规则</span>
               </Link>
             </Menu.Item>
             <Menu.Item key="/schedulers">
               <Link to="/schedulers">
                 <Icon type="sync" />
-                <span className={styles.navtext}>Scheduler</span>
+                <span className={styles.navtext}>调度器</span>
               </Link>
             </Menu.Item>
           </Menu>

@@ -30,9 +30,9 @@ export function patch(id, values) {
 
 export function put(values) {
   console.log('services/users.js/put--->', values);
-  return request('/api/users/status', {
+  return request('/api/users', {
     headers: { 'Content-Type': 'application/json' },
-    method: 'PUT',
+    method: 'PATCH',
     body: JSON.stringify(values),
   });
 }

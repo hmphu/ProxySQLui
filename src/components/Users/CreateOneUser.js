@@ -48,11 +48,11 @@ class CreateOneUser extends Component {
 
     return (
       <span>
-        <Button icon="user-add" onClick={this.showModelHandler}>
-          {' '}Add User{' '}
+        <Button type="primary" icon="user-add" onClick={this.showModelHandler}>
+          {' '}创建新用户{' '}
         </Button>
         <Modal
-          title="Add User"
+          title="创建新用户"
           visible={this.state.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
@@ -60,14 +60,14 @@ class CreateOneUser extends Component {
           <Form horizontal onSubmit={this.okHandler}>
             <FormItem {...formItemLayout} label="User Name">
               {getFieldDecorator('username', {
-                initialValue: 'admin',
-              })(<Input />)}
+                initialValue: 'dev',
+              })(<Input type="string" />)}
             </FormItem>
 
             <FormItem {...formItemLayout} label="Password">
               {getFieldDecorator('password', {
-                initialValue: 'admin',
-              })(<Input />)}
+                initialValue: 'dev',
+              })(<Input type="string" />)}
             </FormItem>
           </Form>
         </Modal>

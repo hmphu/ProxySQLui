@@ -10,6 +10,7 @@ import UserDHGModal from './UserDHGModal';
 import UserDSModal from './UserDSModal';
 import UserMCModal from './UserMCModal';
 import CreateOneUser from './CreateOneUser';
+import UserCreateOrUpdateModal from './UserCreateOrUpdateModal';
 
 // const Option = Select.option;
 const FormItem = Form.Item;
@@ -68,6 +69,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   }
 
   function editHandler(id, values) {
+    console.log('Users.js->editHandler->values: ', values);
     dispatch({
       type: 'users/put',
       payload: { values },
@@ -92,73 +94,86 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   const columns = [
     {
-      title: 'Name',
+      title: '用户名',
       dataIndex: 'username',
       key: 'username',
       // render: text => <a href="">{text}</a>,
     },
     {
-      title: 'Password',
+      title: '密码',
       dataIndex: 'password',
       key: 'password',
     },
     {
-      title: 'Active',
+      title: '激活',
       dataIndex: 'active',
       key: 'active',
     },
     {
-      title: 'DefaultHostgroup',
+      title: '使用SSL',
+      dataIndex: 'use_ssl',
+      key: 'use_ssl',
+    },
+    {
+      title: '默认主机组',
       dataIndex: 'default_hostgroup',
       key: 'default_hostgroup',
     },
     {
-      title: 'DefaultSchema',
+      title: '默认模式名',
       dataIndex: 'default_schema',
       key: 'default_schema',
     },
     {
-      title: 'MaxConnections',
+      title: '模式锁定',
+      dataIndex: 'schema_locked',
+      key: 'schema_locked',
+    },
+    {
+      title: '事务持久',
+      dataIndex: 'transaction_persistent',
+      key: 'transaction_persistent',
+    },
+    {
+      title: '快速转发',
+      dataIndex: 'fast_forward',
+      key: 'fast_forward',
+    },
+    {
+      title: '后端',
+      dataIndex: 'backend',
+      key: 'backend',
+    },
+    {
+      title: '前端',
+      dataIndex: 'frontend',
+      key: 'frontend',
+    },
+    {
+      title: '最大连接数',
       dataIndex: 'max_connections',
       key: 'max_connections',
     },
 
     {
-      title: 'Operation',
+      title: '操作',
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UserPasswdModal
+          <UserCreateOrUpdateModal
             record={record}
-            onOk={editUserPass.bind(null, record.id)}
+            onOk={editHandler.bind(null, record)}
+            modaltitle="编辑用户"
           >
-            <a>EditPasswd</a>
-          </UserPasswdModal>
-          <UserActiveModal
-            record={record}
-            onOk={editUserStatusHandler.bind(null, record.username)}
-          >
-            <a>EditStatus</a>
-          </UserActiveModal>
-          <UserDHGModal
-            record={record}
-            onOk={editUserDHG.bind(null, record.id)}
-          >
-            <a>EditDHG</a>
-          </UserDHGModal>
-          <UserDSModal record={record} onOk={editUserDS.bind(null, record.id)}>
-            <a>EditDS</a>
-          </UserDSModal>
-          <UserMCModal record={record} onOk={editUserMC.bind(null, record.id)}>
-            <a>EditMC</a>
-          </UserMCModal>
+            <Button icon="edit" type="primary"> 编辑用户</Button>
+          </UserCreateOrUpdateModal>
 
           <Popconfirm
             record={record}
-            title="Delete User"
+            title="确定删除此用户？"
             onConfirm={deleteHandler.bind(null, record.username)}
           >
-            <Button icon="delete" type="danger"> Delete</Button>
+            <Button icon="delete" type="danger">删除用户</Button>
           </Popconfirm>
         </span>
       ),
@@ -170,22 +185,20 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       <div>
         <CreateOneUser onOK={createOneUserHandler} />
       </div>
-      <div>
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          loading={loading}
-          rowKey={record => record.id}
-          pagination={false}
-        />
-        <Pagination
-          className="ant-table-pagination"
-          total={total}
-          current={current}
-          pageSize={PAGE_SIZE}
-          onChange={pageChangeHandler}
-        />
-      </div>
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        loading={loading}
+        rowKey={record => record.id}
+        pagination={false}
+      />
+      <Pagination
+        className="ant-table-pagination"
+        total={total}
+        current={current}
+        pageSize={PAGE_SIZE}
+        onChange={pageChangeHandler}
+      />
     </div>
   );
 }

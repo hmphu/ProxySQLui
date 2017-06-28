@@ -60,3 +60,12 @@ export function DeleteOneServers(values) {
     body: JSON.stringify(values),
   });
 }
+
+// 更新后端服务信息
+export function put(values) {
+  return request('/api/servers', {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'PATCH',
+    body: JSON.stringify(values),
+  });
+}

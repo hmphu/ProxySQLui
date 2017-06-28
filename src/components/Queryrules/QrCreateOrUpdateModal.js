@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form, Input } from 'antd';
+import { Switch, Select, Modal, Form, Input } from 'antd';
 import styles from './Queryrules.css';
 
-class CreateOneQr extends Component {
+const FormItem = Form.Item;
+
+class QrCreateOrUpdateModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,11 +28,11 @@ class CreateOneQr extends Component {
   okHandler = () => {
     const onOk = this.props.onOk;
     this.props.form.validateFields((err, values) => {
-      console.log('CreateOneQr->okHandler->this.props: ', this.props);
-      const username = values.username;
-      console.log('values --> ', { username });
+      console.log('UpdateQrClientModal->okHandler->values:', values);
+      const rule_id = parseInt(values.rule_id, 10);
+      const client_addr = values.client_addr;
       if (!err) {
-        onOk({ username });
+        onOk({ rule_id, client_addr });
         this.hideModelHandler();
       }
     });
@@ -39,7 +41,7 @@ class CreateOneQr extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    // const { password, username } = this.props.record;
+    const { rule_id, client_addr } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -47,21 +49,27 @@ class CreateOneQr extends Component {
 
     return (
       <span>
-        <Button icon="api" type="primary" onClick={this.showModelHandler}>
-          {' '}新建{' '}
-        </Button>
+        <span onClick={this.showModelHandler}>
+          {children}
+        </span>
         <Modal
-          title="新建规则"
+          title="Modify Query Rules"
           visible={this.state.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
-            <Form.Item {...formItemLayout} label="目标用户">
-              {getFieldDecorator('username', {
-                initialValue: 'dev',
-              })(<Input type="string" />)}
-            </Form.Item>
+            <FormItem {...formItemLayout} label="RuleID">
+              {getFieldDecorator('rule_id', {
+                initialValue: rule_id,
+              })(<Input type="number" />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label="ClientAddr">
+              {getFieldDecorator('client_addr', {
+                initialValue: client_addr,
+              })(<Input />)}
+            </FormItem>
           </Form>
         </Modal>
       </span>
@@ -69,12 +77,4 @@ class CreateOneQr extends Component {
   }
 }
 
-/*
-CreateOneServer.propTypes = {
-  hostgroup_id: React.PropTypes.number.isRequired,
-  hostname: React.PropTypes.string.isRequired,
-  port: React.PropTypes.number.isRequired,
-};
-*/
-
-export default Form.create()(CreateOneQr);
+export default Form.create()(QrCreateOrUpdateModal);

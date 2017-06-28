@@ -8,6 +8,7 @@ import CreateOneServer from './CreateOneServer';
 import UpdateServerStatusModal from './UpdateServerStatusModal';
 import UpdateServerWeightModal from './UpdateServerWeightModal';
 import UpdateServerMCModal from './UpdateServerMCModal';
+import ServerCreateOrUpdateModal from './ServerCreateOrUpdateModal';
 
 import styles from './Servers.css';
 
@@ -74,92 +75,90 @@ function Servers({
     });
   };
 
+  // 更新后端服务最大连接数
+  const editHandler = (record, values) => {
+    console.log('Servers.js->editHandler->values= ', values);
+    dispatch({
+      type: 'servers/put',
+      payload: values,
+    });
+  };
+
   // 定义后端服务列表
   const columns = [
     {
-      title: 'Hostgroup_id',
+      title: '主机组ID',
       dataIndex: 'hostgroup_id',
       key: 'hostgroup_id',
     },
     {
-      title: 'Hostname',
+      title: '主机名',
       dataIndex: 'hostname',
       key: 'hostname',
     },
     {
-      title: 'Port',
+      title: '端口',
       dataIndex: 'port',
       key: 'port',
     },
     {
-      title: 'Status',
+      title: '状态',
       dataIndex: 'status',
       key: 'status',
     },
     {
-      title: 'Weight',
+      title: '权重',
       dataIndex: 'weight',
       key: 'weight',
     },
     {
-      title: 'Compression',
+      title: '启用压缩',
       dataIndex: 'compression',
       key: 'compression',
     },
     {
-      title: 'MaxConnections',
+      title: '最大连接数',
       dataIndex: 'max_connections',
       key: 'max_connections',
     },
     {
-      title: 'MaxReplicationLag',
+      title: '最大复制延时',
       dataIndex: 'max_replication_lag',
       key: 'max_replication_lag',
     },
     {
-      title: 'UseSSL',
+      title: '开启SSL',
       dataIndex: 'use_ssl',
       key: 'use_ssl',
     },
     {
-      title: 'MaxLatencyMs',
+      title: '最大延时时间(单位：ms)',
       dataIndex: 'max_latency_ms',
       key: 'max_latency_ms',
     },
     {
-      title: 'Comment',
+      title: '注释',
       dataIndex: 'comment',
       key: 'comment',
     },
     {
-      title: 'Operation',
+      title: '操作',
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UpdateServerStatusModal
+          <ServerCreateOrUpdateModal
             record={record}
-            onOk={updateOneServerStatusHandler.bind(null, record)}
+            onOk={editHandler.bind(null, record)}
+            title="编辑"
           >
-            <a> Status </a>
-          </UpdateServerStatusModal>
-          <UpdateServerWeightModal
-            record={record}
-            onOk={updateOneServerWeightHandler.bind(null, record)}
-          >
-            <a> Weight </a>
-          </UpdateServerWeightModal>
-          <UpdateServerMCModal
-            record={record}
-            onOk={updateOneServerMCHandler.bind(null, record)}
-          >
-            <a> MC </a>
-          </UpdateServerMCModal>
+            <Button icon="edit" type="primary">编辑</Button>
+          </ServerCreateOrUpdateModal>
           <Popconfirm
             record={record}
-            title="Delete Server ?"
+            title="是否删除此节点信息?"
             onConfirm={deleteOneServer.bind(null, record)}
           >
-            <Button icon="delete" type="danger"> Delete</Button>
+            <Button icon="delete" type="danger">删除</Button>
           </Popconfirm>
         </span>
       ),

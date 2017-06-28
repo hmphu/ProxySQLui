@@ -49,6 +49,11 @@ export default {
       const page = yield select(state => state.servers.page);
       yield put({ type: 'ListAllServers', payload: { page } });
     },
+    *put({ payload: values }, { call, put, select }) {
+      yield call(ServersServices.put, values);
+      const page = yield select(state => state.servers.page);
+      yield put({ type: 'ListAllServers', payload: { page } });
+    },
     *DeleteOneServer(
       { payload: { hostgroup_id, hostname, port } },
       { call, put, select },

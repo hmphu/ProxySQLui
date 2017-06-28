@@ -246,10 +246,10 @@ function Queryrules({
 
           <Popconfirm
             record={record}
-            title="Delete Qr"
+            title="删除此条规则?"
             onConfirm={deleteOneQr.bind(null, record)}
           >
-            <Button icon="delete" type="danger"> Delete</Button>
+            <Button icon="delete" type="danger">删除</Button>
           </Popconfirm>
         </span>
       ),

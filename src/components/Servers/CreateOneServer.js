@@ -49,29 +49,29 @@ class CreateOneServer extends Component {
 
     return (
       <span>
-        <Button icon="database" onClick={this.showModelHandler}>
-          {' '}Add Server{' '}
+        <Button type="primary" icon="database" onClick={this.showModelHandler}>
+          {' '}新建{' '}
         </Button>
         <Modal
-          title="Add Server"
+          title="新建后端数据库信息"
           visible={this.state.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
         >
           <Form horizontal onSubmit={this.okHandler}>
-            <Form.Item {...formItemLayout} label="HostGroupId">
+            <Form.Item {...formItemLayout} label="主机组ID">
               {getFieldDecorator('hostgroup_id', {
                 initialValue: 0,
               })(<Input type="number" />)}
             </Form.Item>
 
-            <Form.Item {...formItemLayout} label="Hostname">
+            <Form.Item {...formItemLayout} label="主机名">
               {getFieldDecorator('hostname', {
                 initialValue: '192.168.100.10',
               })(<Input />)}
             </Form.Item>
 
-            <Form.Item {...formItemLayout} label="Hostname">
+            <Form.Item {...formItemLayout} label="端口">
               {getFieldDecorator('port', {
                 initialValue: 6033,
               })(<Input type="number" />)}
