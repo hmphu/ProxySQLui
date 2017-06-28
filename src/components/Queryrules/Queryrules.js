@@ -17,6 +17,8 @@ import UpdateQrMatchDigestModal from './UpdateQrMatchDigestModal';
 import UpdateQrMatchPatternModal from './UpdateQrMatchPatternModal';
 import UpdateQrReplacePatternModal from './UpdateQrReplacePatternModal';
 
+import QrCreateOrUpdateModal from './QrCreateOrUpdateModal';
+
 function Queryrules({
   dispatch,
   list: dataSource,
@@ -131,118 +133,88 @@ function Queryrules({
     });
   }
 
+  // 更新一个查询规则的目标主机组
+  function editHandler(record, values) {
+    dispatch({
+      type: 'queryrules/put',
+      payload: values,
+    });
+  }
+
   // 定义要呈现的表格结构
   const columns = [
     {
-      title: 'RuleId',
+      title: '规则ID',
       dataIndex: 'rule_id',
       key: 'rule_id',
     },
     {
-      title: 'Active',
+      title: '状态',
       dataIndex: 'active',
       key: 'active',
     },
     {
-      title: 'UserName',
+      title: '目标用户',
       dataIndex: 'username',
       key: 'username',
     },
     {
-      title: 'Schemaname',
+      title: '目标库',
       dataIndex: 'schemaname',
       key: 'schemaname',
     },
     {
-      title: 'ClientAddr',
+      title: '客户端IP',
       dataIndex: 'client_addr',
       key: 'client_addr',
     },
     {
-      title: 'Digest',
+      title: 'SQL唯一标识',
       dataIndex: 'digest',
       key: 'digest',
     },
     {
-      title: 'MatchDigest',
+      title: '匹配SQL语句',
       dataIndex: 'match_digest',
       key: 'match_digest',
     },
     {
-      title: 'MatchPattern',
+      title: '匹配SQL正则',
       dataIndex: 'match_pattern',
       key: 'match_pattern',
     },
     {
-      title: 'ReplacePattern',
+      title: '覆写语句',
       dataIndex: 'replace_pattern',
       key: 'replace_pattern',
     },
     {
-      title: 'DestinationHostGroup',
+      title: '目标主机组',
       dataIndex: 'destination_hostgroup',
       key: 'destination_hostgroup',
     },
     {
-      title: 'Operation',
+      title: '查询缓冲时间',
+      dataIndex: 'cache_ttl',
+      key: 'cache_ttl',
+    },
+    {
+      title: '错误信息',
+      dataIndex: 'error_msg',
+      key: 'error_msg',
+    },
+    {
+      title: '操作',
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UpdateQrUserModal
+          <QrCreateOrUpdateModal
+            title="修改"
             record={record}
-            onOk={updateOneQrUserHandler.bind(null, record)}
+            onOk={editHandler.bind(null, record)}
           >
-            <a>EditUser</a>
-          </UpdateQrUserModal>
-          <UpdateQrStatusModal
-            record={record}
-            onOk={updateOneQrStatusHandler.bind(null, record)}
-          >
-            <a>EditStatus</a>
-          </UpdateQrStatusModal>
-
-          <UpdateQrSchemaModal
-            record={record}
-            onOk={updateOneQrSchemaHandler.bind(null, record)}
-          >
-            <a>EditSchema</a>
-          </UpdateQrSchemaModal>
-          <UpdateQrClientModal
-            record={record}
-            onOk={updateOneQrClientHandler.bind(null, record)}
-          >
-            <a>EditClient</a>
-          </UpdateQrClientModal>
-          <UpdateQrDigestModal
-            record={record}
-            onOk={updateOneQrDigestHandler.bind(null, record)}
-          >
-            <a>EditDigest</a>
-          </UpdateQrDigestModal>
-          <UpdateQrMatchDigestModal
-            record={record}
-            onOk={updateOneQrMatchDigestHandler.bind(null, record)}
-          >
-            <a>EditMatchDigest</a>
-          </UpdateQrMatchDigestModal>
-          <UpdateQrMatchPatternModal
-            record={record}
-            onOk={updateOneQrMatchPatternHandler.bind(null, record)}
-          >
-            <a>EditMatchPattern</a>
-          </UpdateQrMatchPatternModal>
-          <UpdateQrReplacePatternModal
-            record={record}
-            onOk={updateOneQrReplacePatternHandler.bind(null, record)}
-          >
-            <a>ReplacePattern</a>
-          </UpdateQrReplacePatternModal>
-          <UpdateQrHostGroupModal
-            record={record}
-            onOk={updateOneQrHostGroupHandler.bind(null, record)}
-          >
-            <a>EditHostGroup</a>
-          </UpdateQrHostGroupModal>
+            <Button icon="edit" type="primary">编辑</Button>
+          </QrCreateOrUpdateModal>
 
           <Popconfirm
             record={record}

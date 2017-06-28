@@ -110,3 +110,11 @@ export function DeleteOneQueryRules(id) {
     method: 'DELETE',
   });
 }
+
+export function put(values) {
+  return request('/api/queryrules', {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'PATCH',
+    body: JSON.stringify(values),
+  });
+}

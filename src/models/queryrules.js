@@ -108,6 +108,12 @@ export default {
       const page = yield select(state => state.queryrules.page);
       yield put({ type: 'ListAllQueryRules', payload: { page } });
     },
+    *put({ payload: values }, { call, put, select }) {
+      console.log('models->queryrules.js->put->values:', values);
+      yield call(QueryRulesServices.put, values);
+      const page = yield select(state => state.queryrules.page);
+      yield put({ type: 'ListAllQueryRules', payload: { page } });
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {
