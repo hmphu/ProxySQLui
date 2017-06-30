@@ -5,11 +5,11 @@ docker rm ProxySQLui
 
 cp -r ../dist .
 
-docker build -t proxysqlui .
+docker build -t proxysql_ui .
 
 docker run \
 	--name ProxySQLui \
 	-p 8080:8080 \
-	-d proxysqlui
+	-d proxysql_ui
 
 rm -fr ./dist
