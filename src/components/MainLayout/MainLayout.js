@@ -32,6 +32,12 @@ class MainLayout extends React.Component {
                 <span className={styles.navtext}>仪表盘</span>
               </Link>
             </Menu.Item>
+            <Menu.Item key="/variables">
+              <Link to="/variables">
+                <Icon type="info-circle-o" />
+                <span className={styles.navtext}>代理配置</span>
+              </Link>
+            </Menu.Item>
             <Menu.Item key="/users">
               <Link to="/users">
                 <Icon type="user" />
