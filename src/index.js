@@ -1,9 +1,17 @@
 import dva from 'dva';
+import { browserHistory } from 'dva/router';
+import { message } from 'antd';
 import './index.css';
 import createLoading from 'dva-loading';
 
+const ERROR_MSG_DURATION = 3;
 // 1. Initialize
-const app = dva();
+const app = dva({
+  history: browserHistory,
+  onError(e) {
+      message.error(e.message, ERROR_MSG_DURATION);
+    },
+});
 
 app.model(require('./models/users'));
 app.model(require('./models/schedulers'));
