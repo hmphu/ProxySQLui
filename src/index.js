@@ -10,6 +10,7 @@ app.model(require('./models/schedulers'));
 app.model(require('./models/queryrules'));
 app.model(require('./models/dashboard'));
 app.model(require('./models/servers'));
+app.model(require('./models/variables'));
 
 app.use(createLoading());
 

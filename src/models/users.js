@@ -10,6 +10,7 @@ export default {
   },
   reducers: {
     save(state, { payload: { data: list, total, page } }) {
+      console.log('models->users: ', list, total, page);
       return { ...state, list, total, page };
     },
   },

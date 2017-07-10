@@ -7,6 +7,7 @@ import Servers from './routes/Servers.js';
 import Queryrules from './routes/Queryrules.js';
 import Schedulers from './routes/Schedulers.js';
 import Dashboard from './routes/Dashboard.js';
+import Variables from './routes/Variables.js';
 
 function RouterConfig({ history }) {
   return (
@@ -17,6 +18,7 @@ function RouterConfig({ history }) {
       <Route path="/servers" component={Servers} />
       <Route path="/queryrules" component={Queryrules} />
       <Route path="/schedulers" component={Schedulers} />
+      <Route path="/variables" component={Variables} />
     </Router>
   );
 }
