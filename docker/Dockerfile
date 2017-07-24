@@ -9,3 +9,4 @@ COPY dist/index.js /usr/share/nginx/html/index.js
 COPY dist/index.css /usr/share/nginx/html/index.css
 COPY dist/static/yay.44dd3333.jpg /usr/share/nginx/html/static/yay.44dd3333.jpg
 
+

@@ -3,6 +3,8 @@
 docker stop ProxySQLui
 docker rm ProxySQLui
 
+cd ..;npm run build;cd docker
+
 cp -r ../dist .
 
 docker build -t proxysql_ui .
