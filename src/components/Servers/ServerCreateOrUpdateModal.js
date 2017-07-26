@@ -34,12 +34,7 @@ class ServerCreateOrUpdateModal extends Component {
       const port = parseInt(values.port, 10);
       const status = values.status;
       const weight = parseInt(values.weight, 10);
-      let compression = values.compression;
-      if (compression) {
-        compression = 1;
-      } else {
-        compression = 0;
-      }
+      const compression = values.compression;
       const max_connections = parseInt(values.max_connections, 10);
       const max_replication_lag = parseInt(values.max_replication_lag, 10);
       let use_ssl = values.use_ssl;
@@ -149,7 +144,7 @@ class ServerCreateOrUpdateModal extends Component {
                 initialValue: compression,
               })(
                 <InputNumber min={0} max={102400} defaultvalue={0} />,
-                )}
+              )}
             </FormItem>
 
             <FormItem {...formItemLayout} label="最大连接数">
