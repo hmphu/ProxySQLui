@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Select, Modal, Form, Input } from 'antd';
+import { Switch, Select, Modal, Form, Input, InputNumber } from 'antd';
 import styles from './Servers.css';
 
 const FormItem = Form.Item;
@@ -133,7 +133,7 @@ class ServerCreateOrUpdateModal extends Component {
               {getFieldDecorator('port', {
                 rules: [{ required: true }],
                 initialValue: port,
-              })(<Input type="number" />)}
+              })(<InputNumber min={1025} max={655350} defaultvalue={3306} />)}
             </FormItem>
             <FormItem {...formItemLayout} label="状态">
               {statusOptions}
@@ -142,31 +142,26 @@ class ServerCreateOrUpdateModal extends Component {
               {getFieldDecorator('weight', {
                 rules: [{ required: true }],
                 initialValue: weight,
-              })(<Input type="number" />)}
+              })(<InputNumber min={1} max={1000} defaultValue={100} />)}
             </FormItem>
-            <FormItem {...formItemLayout} label="启用压缩">
+            <FormItem {...formItemLayout} label="压缩值">
               {getFieldDecorator('compression', {
                 initialValue: compression,
               })(
-                <Switch
-                  defaultChecked={compression}
-                  checkedChildren={'是'}
-                  unCheckedChildren={'否'}
-                  onChange=""
-                />,
-              )}
+                <InputNumber min={0} max={102400} defaultvalue={0} />,
+                )}
             </FormItem>
 
             <FormItem {...formItemLayout} label="最大连接数">
               {getFieldDecorator('max_connections', {
                 rules: [{ required: true }],
                 initialValue: max_connections,
-              })(<Input type="number" />)}
+              })(<InputNumber min={1} max={1000000} defaultvalue={10000} />)}
             </FormItem>
             <FormItem {...formItemLayout} label="最大复制延时">
               {getFieldDecorator('max_replication_lag', {
                 initialValue: max_replication_lag,
-              })(<Input type="number" />)}
+              })(<InputNumber min={0} max={126144000} defaultvalue={0} />)}
             </FormItem>
             <FormItem {...formItemLayout} label="启用SSL">
               {getFieldDecorator('use_ssl', {
@@ -180,10 +175,10 @@ class ServerCreateOrUpdateModal extends Component {
                 />,
               )}
             </FormItem>
-            <FormItem {...formItemLayout} label="最大复制延时">
+            <FormItem {...formItemLayout} label="最大延时时间">
               {getFieldDecorator('max_latency_ms', {
                 initialValue: max_latency_ms,
-              })(<Input type="number" />)}
+              })(<InputNumber min={0} max={100000000} defaultvalue={0} />)}
             </FormItem>
 
             <FormItem {...formItemLayout} label="备注">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Modal, Form, Input } from 'antd';
+import { Switch, Modal, Form, Input, InputNumber } from 'antd';
 import styles from './UserModal.css';
 
 const FormItem = Form.Item;
@@ -30,7 +30,7 @@ class UserCreateOrUpdateModal extends Component {
     const { onOk } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        let result = values;
+        const result = values;
         result.max_connections = parseInt(result.max_connections, 10);
         onOk(values);
         this.hideModelHandler();
@@ -76,13 +76,13 @@ class UserCreateOrUpdateModal extends Component {
               {getFieldDecorator('username', {
                 rules: [{ required: true }],
                 initialValue: username,
-              })(<Input />)}
+              })(<Input type="string" />)}
             </FormItem>
             <FormItem {...formItemLayout} label="密码">
               {getFieldDecorator('password', {
                 rules: [{ required: true }],
                 initialValue: password,
-              })(<Input />)}
+              })(<Input type="string" />)}
             </FormItem>
             <FormItem {...formItemLayout} label="激活">
               {getFieldDecorator('active', {
@@ -113,15 +113,15 @@ class UserCreateOrUpdateModal extends Component {
               {getFieldDecorator('default_hostgroup', {
                 rules: [{ required: true }],
                 initialValue: default_hostgroup,
-              })(<Input type="number" />)}
+              })(<InputNumber min={1} max={10000} defaultValue={0} />)}
             </FormItem>
             <FormItem {...formItemLayout} label="默认数据库">
               {getFieldDecorator('default_schema', {
-                rules: [{ required: true }],
+                rules: [{ required: false }],
                 initialValue: default_schema,
               })(<Input type="string" />)}
             </FormItem>
-            <FormItem {...formItemLayout} label="数据库锁定">
+            <FormItem {...formItemLayout} label="模式锁定">
               {getFieldDecorator('schema_locked', {
                 initialValue: schema_locked,
               })(
@@ -185,7 +185,7 @@ class UserCreateOrUpdateModal extends Component {
               {getFieldDecorator('max_connections', {
                 rules: [{ required: true }],
                 initialValue: max_connections,
-              })(<Input type="number" />)}
+              })(<InputNumber min={1} max={1000000} defaultValue={10000} />)}
             </FormItem>
           </Form>
         </Modal>
