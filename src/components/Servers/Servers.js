@@ -112,7 +112,7 @@ function Servers({
       key: 'weight',
     },
     {
-      title: '启用压缩',
+      title: '压缩值',
       dataIndex: 'compression',
       key: 'compression',
     },
